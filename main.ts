@@ -9,6 +9,12 @@ import { join } from "node:path";
 
 const entryText = "Stay home all 2020. Buy the good chair.";
 
+// The gate allows 1–200 characters; refuse to write anything outside it
+// rather than shipping an entry the scorer would mark invalid.
+if (entryText.length < 1 || entryText.length > 200) {
+  throw new Error(`entry is ${entryText.length} characters, outside the 1-200 gate`);
+}
+
 const outputDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
 mkdirSync(outputDir, { recursive: true });
 writeFileSync(join(outputDir, "entry.txt"), entryText, "utf8");
