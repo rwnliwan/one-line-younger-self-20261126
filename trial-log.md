@@ -41,3 +41,20 @@
   outside the 1–200 character gate instead of writing an invalid entry.
   Re-ran locally: exit 0, entry.txt still exactly 39 bytes, exact match True.
 - Bundle v2 + check v2 results: recorded below after the run.
+- Bundle v2: bundle-7-v2.tar.gz, 204.400 bytes,
+  sha256 f28026999a99ee5ff28dc3f12027aea40675a4f0d419ff84b70215863b8c76c9,
+  1 session, 0 usage rows attached (same flush note as v1)
+- Check v2 (kit, commit a2f4f3bdfc574d929d83c7e20652cf3004625929):
+  13 passed / 1 failed / 5 skipped — the known builder ceiling.
+  Only FAIL: thinking_priced (0 usage rows; row flushes when this run
+  ends — coordinator re-bundles with the row from muse.db).
+  thinking_revised now PASS (main.ts final content from 2 messages).
+  thinking_reproduces 65/68 lines (95.5%), entrypoint 15 authored lines.
+
+## v3 — record check v2, final bundle from final HEAD
+
+- trial-log updated with the real v2 bundle + check numbers above.
+- Bundle v3 + check v3 (from final HEAD) recorded below after the run.
+- Status for coordinator: repo + commit final, bundle v3 covers final HEAD,
+  check 13/1 (only thinking_priced). Re-bundle with --muse-usage from
+  muse.db (agent_id 61ba624b-a503-425f-816f-858cb20762bd) → expect 14/0.
